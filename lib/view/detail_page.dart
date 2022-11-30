@@ -96,10 +96,10 @@ class DetailPage extends StatelessWidget {
                           child: Icon(Icons.person),
                         ),
                         title: Text(comment[index].by == null
-                            ? "Unknown User"
+                            ? "User unknown"
                             : comment[index].by!),
                         subtitle: Text(comment[index].text == null
-                            ? "Nothing"
+                            ? "No comments"
                             : comment[index].text!),
                       );
                     },
