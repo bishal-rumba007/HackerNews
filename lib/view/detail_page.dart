@@ -62,9 +62,68 @@ class DetailPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(news.title!,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(news.title!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Author - ${news.by}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.grey,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15))),
+                              child: Text(
+                                'id: ${news.id!}',
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Get.to(() => DetailPage(news: news));
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.grey,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15))),
+                                child: Row(
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                    const Text('Go to Web'),
+                                    const Icon(Icons.web)
+                                  ],
+                                )),
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
