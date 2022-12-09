@@ -40,11 +40,8 @@ class StoryPage extends ConsumerWidget {
                         color: Colors.black12,
                       ))),
                       child: ExpansionTile(
-                        title: Text(
-                          data[index].title!,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
+                        title: Text(data[index].title!,
+                            style: Theme.of(context).textTheme.headline6),
                         subtitle: Text(
                           data[index].by!,
                           style: const TextStyle(
@@ -57,8 +54,8 @@ class StoryPage extends ConsumerWidget {
                             child: InkWell(
                               onTap: () {
                                 ref
-                                    .read(commentCall)
-                                    .getComment(kids: data[index].kids);
+                                    .read(getComments)
+                                    .fetchComment(kids: data[index].kids);
                                 Get.to(() => DetailPage(news: data[index]));
                               },
                               child: SizedBox(

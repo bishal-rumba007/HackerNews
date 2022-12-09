@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hacker_news_proj/view/web_view_page.dart';
 import '../model/topStory.dart';
 import '../provider/comment_provider.dart';
 
@@ -28,6 +27,9 @@ class DetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -106,7 +108,7 @@ class DetailPage extends StatelessWidget {
                             ),
                             ElevatedButton(
                                 onPressed: () {
-                                  Get.to(() => DetailPage(news: news));
+                                  Get.to(() => WebViewApp(urlData: news.url!));
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.grey,
