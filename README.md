@@ -12,3 +12,10 @@ It has following features:
 
 ## Take a look:
 
+<img src="assets/images/mainPage.png" width="300">
+
+<img src="assets/images/detailPage.png" width="300">
+
+
+<img src="assets/images/webView.png" width="300">
+
