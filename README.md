@@ -19,3 +19,5 @@ It has following features:
 
 <img src="assets/images/webView.png" width="300">
 
+<img src="assets/images/shimmer.png" width="300">
+
