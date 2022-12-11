@@ -1,16 +1,23 @@
-# hacker_news_proj
+## hacker_news_proj
 
-A new Flutter project.
+A Flutter project with Hacker News API integration. it has other cool features such as Webview and shimmer effect.
 
 ## Getting Started
+In this project I have demonstrated my UI skill with flutter and API integration.
+It has following features:
 
-This project is a starting point for a Flutter application.
+- [Hacker News API(Top stories/comments)]( 'https://hacker-news.firebaseio.com/v0topstoriesjson')
+- [Flutter WebView](https://pub.dev/packages/webview_flutter)
+- [Flutter Shimmer effect](https://pub.dev/packages/shimmer)
 
-A few resources to get you started if this is your first Flutter project:
+## Take a look:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="assets/images/mainPage.png" width="300">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="assets/images/detailPage.png" width="300">
+
+
+<img src="assets/images/webView.png" width="300">
+
+<img src="assets/images/shimmer.png" width="300">
+

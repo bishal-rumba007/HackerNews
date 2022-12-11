@@ -40,8 +40,8 @@ dependencies:
   get: ^4.6.5
   webview_flutter: ^3.0.4
   flutter_riverpod: ^2.0.2
-  shimmer: ^2.0.0
   http: ^0.13.5
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
