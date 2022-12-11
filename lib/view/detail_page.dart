@@ -119,9 +119,10 @@ class DetailPage extends StatelessWidget {
                                   // ignore: prefer_const_literals_to_create_immutables
                                   children: [
                                     const Text('Go to Web'),
-                                    const Icon(Icons.web)
-                                  ],
-                                )),
+                                    const Icon(Icons.web),
+                                    ],
+                                  ),
+                              ),
                           ],
                         )
                       ],
