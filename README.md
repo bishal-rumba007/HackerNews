@@ -12,9 +12,9 @@ It has following features:
 
 ## Take a look:
 
-<img src="assets/images/shimmer.png" width="300">
-
 <img src="assets/images/mainPage.png" width="300">
+
+<img src="assets/images/comment_shimmer.png" width="150"> <img src="assets/images/comment%20section.png" width="150">
 
 <img src="assets/images/webView.png" width="300">
 
