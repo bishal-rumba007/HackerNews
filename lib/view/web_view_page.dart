@@ -24,8 +24,7 @@ class _WebViewStackState extends State<WebViewStack> {
         children: [
           WebView(
             javascriptMode: JavascriptMode.unrestricted,
-            initialUrl: widget
-                .endPoint, // use Widget.parameter or field you want to grab from the stateful widget above.
+            initialUrl: widget.endPoint, // use Widget.parameter or field you want to grab from the stateful widget above.
             onWebViewCreated: (webViewController) {
               widget.controller.complete(webViewController);
             },
@@ -71,7 +70,8 @@ class _WebViewAppState extends State<WebViewApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter WebView'),
+        backgroundColor: const Color(0xff457B9D),
+        title: const Text('Web View'),
         actions: [
           NavigationControls(controller: controller),
         ],

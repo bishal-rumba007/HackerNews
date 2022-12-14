@@ -1,4 +1,3 @@
-
 class News {
   String? by;
   int? id;

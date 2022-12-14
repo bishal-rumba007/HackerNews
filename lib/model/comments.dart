@@ -1,4 +1,4 @@
-class Comments {
+class CommentModel {
   String? by;
   int? id;
   List? kids;
@@ -7,23 +7,17 @@ class Comments {
   int? time;
   String? type;
 
-  Comments(
+  CommentModel(
       {this.by,
         this.id,
-        this.kids,
-        this.parent,
         this.text,
-        this.time,
-        this.type});
+      });
 
-  factory Comments.fromJson(Map<String, dynamic> json) {
-    return Comments(
+  factory CommentModel.fromJson(Map<String, dynamic> json) {
+    return CommentModel(
       by: json['by'],
       id: json['id'],
-      parent: json['parent'],
       text: json['text'],
-      time: json['time'],
-      type: json['type'],
-    );
+      );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../api.dart';
-import '../model/topStory.dart';
+import '../model/news.dart';
 
 final topStoryProvider =
     FutureProvider<List<News>>((ref) => StoryProvider().getTopStories());
@@ -33,16 +33,5 @@ class StoryProvider {
     }
   }
 
-  // static Future<List<dynamic>> getTopStory() async{
-  //   Response response = await get(Uri.parse(Api.topStories));
-  //   if(response.statusCode == 200){
-  //     final List<dynamic> result = jsonDecode(response.body);
-  //
-  //     return result;
-  //
-  //   } else{
-  //     throw Exception(response.reasonPhrase);
-  //   }
-  // }
 
 }

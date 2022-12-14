@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hacker_news_proj/view/comment_page.dart';
 import 'view/story_page.dart';
 
 
