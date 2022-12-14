@@ -23,6 +23,7 @@ class StoryPage extends ConsumerWidget {
         child: storyData.when(
           data: (data) {
             return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: data.length,
               itemBuilder: (context, index) {
                 return Card(

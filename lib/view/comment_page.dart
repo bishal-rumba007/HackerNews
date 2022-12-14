@@ -2,7 +2,6 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:hacker_news_proj/view/custom_shimmer.dart';
 import 'package:hacker_news_proj/view/web_view_page.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -16,29 +15,58 @@ class CommentPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
+    final data = news.kids;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xff457B9D),
         body: ListView(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+                TextButton(
+                    onPressed: () {
+                      if (news.url != null) {
+                        Get.to(() => WebViewApp(urlData: news.url!));
+                      }
+                    },
+                    child: Row(
+                      children: const [
+                        Text(
+                          'Full News',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                      ],
+                    )),
+              ],
+            ),
             SizedBox(
-              height: 0.34 * height,
+              height: 0.28 * height,
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,21 +95,6 @@ class CommentPage extends ConsumerWidget {
                         SizedBox(
                           height: height * 0.01,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.to(() => WebViewApp(urlData: news.url!),);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            backgroundColor: Colors.green[400]!,
-                            minimumSize: Size(double.infinity, height * 0.065),
-                          ),
-                          child: const Text(
-                            'View Full News',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -106,7 +119,7 @@ class CommentPage extends ConsumerWidget {
             ),
             Container(
               width: double.infinity,
-              height: height * 0.90,
+              height: height * 0.9,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -115,36 +128,55 @@ class CommentPage extends ConsumerWidget {
                 ),
               ),
               child: ListView(
-                children: news.kids!.map((e) {
-                  final commentData = ref.watch(commentsProvider(e));
-                  return commentData.when(
-                      data: (data){
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('${data.by}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                              const SizedBox(height: 2,),
-                              ExpandableText('${data.text}',
-                                expandText: 'Read more',
-                                collapseText: 'Read less',
-                                maxLines: 5,
-                                linkColor: Colors.blueGrey[200],
+                physics: const BouncingScrollPhysics(),
+                children: data == null
+                    ? [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 80.0),
+                          child: Center(
+                              child: Text(
+                            'No comments',
+                            style: TextStyle(fontSize: 25),
+                          )),
+                        )
+                      ]
+                    : data.map((e) {
+                        final commentData = ref.watch(commentsProvider(e));
+                        return commentData.when(
+                          data: (data) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${data.by}',
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  ExpandableText(
+                                    '${data.text}',
+                                    expandText: 'Read more',
+                                    collapseText: 'Read less',
+                                    maxLines: 5,
+                                    linkColor: Colors.blueGrey[200],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          ),
+                            );
+                          },
+                          error: (err, stack) => Text(err.toString()),
+                          loading: () => shimmerLoad(),
                         );
-                      },
-                      error: (err, stack) => Text(err.toString()),
-                      loading: () => shimmerLoad(),
-                  );
-
-                }).toList(),
-
+                      }).toList(),
               ),
             ),
           ],
@@ -152,10 +184,11 @@ class CommentPage extends ConsumerWidget {
       ),
     );
   }
-  Widget shimmerLoad(){
+
+  Widget shimmerLoad() {
     return Shimmer.fromColors(
-        baseColor:Colors.grey.shade400,
-        highlightColor:Colors.grey.shade500,
+        baseColor: Colors.grey.shade400,
+        highlightColor: Colors.grey.shade500,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -167,7 +200,9 @@ class CommentPage extends ConsumerWidget {
                 width: 90,
                 color: Colors.white,
               ),
-              const SizedBox(height: 5,),
+              const SizedBox(
+                height: 5,
+              ),
               Container(
                 height: 25,
                 width: double.infinity,
@@ -175,7 +210,6 @@ class CommentPage extends ConsumerWidget {
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

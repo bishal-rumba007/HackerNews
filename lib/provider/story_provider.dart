@@ -28,10 +28,8 @@ class StoryProvider {
         }
       }
       return newsList;
-    } on DioError catch (err) {
-      throw err.message;
+    } on DioError catch (e) {
+      throw DioException.fromDioError(e);
     }
   }
-
-
 }
